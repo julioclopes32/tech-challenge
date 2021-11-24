@@ -9,13 +9,18 @@ This project was deployed in [Heroku](https://id.heroku.com/login).
 It has 2 applications, one for the [front-end](https://tech-challenge-frontend.herokuapp.com/) in React and also one for the [back-end](https://tech-challenge-backend.herokuapp.com/) in NodeJs.
 
 The current github repositories are:
+
 https://github.com/julioclopes32/tech-challenge-frontend
 
 https://github.com/julioclopes32/tech-challenge-backend
 
 ### Database
 
-For this project, I choose to use the Firebase Database, it's a nice solution, easy to use, with several tools and also, it's a noSQL JSON formatted database, and that the my main concern, with firebase it's really easy to store and retrieve JSON data because we don't have to treat the data, we can just store as it's as the same as recover the data.
+For this project, I choose to use the Firebase Database, it's a nice solution, easy to use, with several tools and also, it's a noSQL JSON formatted database
+<br/>
+<img src="./firebase.png">
+<br/>
+, and that was  my main concern, with firebase it's really easy to store and retrieve JSON data because we don't have to treat the data, we can just store as it's as the same as recover the data.
 
 ### Concept-map
 
