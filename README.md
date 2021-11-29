@@ -6,7 +6,7 @@ This was one of the hardest challenges I've done. It was a full Crud with severa
 
 This project was deployed in [Heroku](https://id.heroku.com/login).
 
-It has 2 applications, one for the [front-end](https://tech-challenge-frontend.herokuapp.com/) in React and also one for the [back-end](https://tech-challenge-backend.herokuapp.com/) in NodeJs.
+It has 2 applications, one for the ```front-end``` link: https://tech-challenge-frontend.herokuapp.com/ in React and also one for the ```back-end``` link: https://tech-challenge-backend.herokuapp.com/ in NodeJs.
 
 The current github repositories are:
 
@@ -22,6 +22,11 @@ For this project, I choose to use the Firebase Database, it's a nice solution, e
 <br/>
 , and that was  my main concern, with firebase it's really easy to store and retrieve JSON data because we don't have to treat the data, we can just store as it's as the same as recover the data.
 
+### Cache
+
+I used the nodejs memory-cache to manage the movie research key-word savings in cache.
+It's really simple to use, as it stores the data in a hashmap format, making simple to store data in cache.
+
 ### Concept-map
 
 The bigger the problem, the harder it's to join all the ideas and not get lost during the development. To help with the process I made a concept map, on it, we can discuss about my ideas and how I faced the solution.
@@ -35,36 +40,33 @@ The Favorite movie page, the research and result pages.
 
 Each one of them is integrated to the back-end with APIs in a NodeJS application.
 
-### Time Issues
-Unfortunately trying to impress, I kind of lost a lot of time in the Front-End, at least the result was a nice web layout,
-but, because of that, I couldn't finish the cache memory allocation and database keyword savings, so the app returns the list always straight from the omdbapi. Heroku comports cache memory, but the time wasn't enought to finish, so I tried to make the application as functional as possible. About the database keyword savigs, I believe that with the Favorite movie list, it was enought to show my database skills.
-
 ### Integration
 Now I'll be more technical about the project. Basically, the Front-End starts in the login page. It uses routes to move between pages and the firebase authenticator to manage the login and password storage as well as the verification, I only do the input treatment and send a request directly to firebase.
 
-Once logged in, the Front-End itself manages the session, with session persistence in all pages. Unfortunately when refreshing the pages, the Front-End might crash, this happens, because during the development, I pass the keyword values of research from the research page to the result page, and these values go to null when refreshing the page. Access null values may crash the application, after I  finished this part, I realized It would've been much better to pass the research attributes to the result page as link parameters.
+Once logged in, the Front-End itself manages the session, with session persistence in all pages. Unfortunately when refreshing the pages, the Front-End redirects to login page, this happens, because the user variables go to null when refreshing the page. Access null values may crash the application, so, it redirects to login page before crashing.
 
-When logged, the home page is the search page, with a nice input to look for movies, if the value is too short, the application won't research because the own API doesn't send results that exceed a big number of movies.
+When logged, the home page is the search page, with a nice input to look for movies, on submit the search the app goes to the result page, with a movie query on link, if the value is too short, the application won't search because the own API doesn't send results that exceed a big number of movies.
 
-So, as said, the Front-End receives from the movieAPI the data, and show as a list. Once decided which are the favorites, on click, the Front-End sends a POST method ```/favorite``` to store the data in the firebase database. 
+On result page, the movie query is sent in a GET method ```/results``` and it returns the keyword search data. On backend, the server looks for the data in cache then in firebase database, then it looks on imdb API. if not found in any of the steps it stores the data in cache in hashmap keyword and in firebase database.
 
-In the Favorite List, the Front-End sends a GET method ```/getfavorite``` to receive the data in the firebase database, and it waits to display on the page. In this part, It was necessary to async render, because, the page can only render after the GET method return the favorite list.
+So, as said, the Front-End receives from the result data, and show as a list. Once decided which are the favorites, on click, the Front-End sends a POST method ```/favorite``` to store the data in the firebase database. 
+
+In the Favorite List, the Front-End sends a GET method ```/getfavorite``` to receive the data in the firebase database, and it waits to display on the page. In this part, It was necessary to async render, because, the page can only render after the GET method returns the favorite list.
+
+Once rendered, it is possible to remove a movie from the favorite list, on click to remove, the the Front-End sends a POST method ```/removefavorite``` to remove the data from firebase database.
 
 ### How It Works?
-Well, it's really simple to use this app, first access the [front-end Website](https://github.com/julioclopes32/tech-challenge-frontend) in heroku.
+Well, it's really simple to use this app, first access the ```front-end Website```: https://github.com/julioclopes32/tech-challenge-frontend in heroku.
 
 go in register, go back to the login screen, authenticate, search for a movie and add to the favorite list.
 
-the application is functional, even though it is not completed.
+the application is functional and deployed, I did my best to reach a good UI/UX.
 
 ### Improvements
 
-Well, If there were more time, I'd be happy to finish my CRUD app, but, even though I'm going to finish this project later.
+Well, I finished this project, it's completely functional and I did all the improvements to reach a good UI/UX, as well as make the Frontend/Backend integration efficient.
 
-- At the research page, the log-out+favorite box doesn't go away.
-- on Refreshing the pages may crash.
-- Implement the cache memory and database research memory.
-- some nodeJS methods return a generic {foo:var} Json, because the catch error and onSuccess callbacks must be implemented.
+The only thing that I would change it's the backend development process. Change between the backend in localhost and heruko required a lot of changes in code, because of that I developed the front end in localhost, but the backend I did directly in heroku, because of that I had to deploy everytime I did a change, and it caused the number of deploys to became just too big. In a real situation, with a real product, it wouldn't be fit to do soo many deploys.
 
 ### Conclusion
 
