@@ -59,7 +59,7 @@ In the Favorite List, the Front-End sends a GET method ```/getfavorite``` to rec
 Once rendered, it is possible to remove a movie from the favorite list, on click to remove, the the Front-End sends a POST method ```/removefavorite``` to remove the data from firebase database.
 
 ### How It Works?
-Well, it's really simple to use this app, first access the ```front-end Website```: https://github.com/julioclopes32/tech-challenge-frontend in heroku.
+Well, it's really simple to use this app, first access the ```front-end Website```: http://tech-challenge-frontend.herokuapp.com/ in heroku.
 
 go in register, go back to the login screen, authenticate, search for a movie and add to the favorite list.
 
