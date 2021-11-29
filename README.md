@@ -25,6 +25,9 @@ For this project, I choose to use the Firebase Database, it's a nice solution, e
 ### Cache
 
 I used the nodejs memory-cache to manage the movie research key-word savings in cache.
+
+link: https://www.npmjs.com/package/memory-cache
+
 It's really simple to use, as it stores the data in a hashmap format, making simple to store data in cache.
 
 ### Concept-map
